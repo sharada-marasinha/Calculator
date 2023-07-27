@@ -5,6 +5,7 @@ let btnC = document.getElementById("C");
 let btnBack = document.getElementById("Back");
 
 let btnMod=document.getElementById("%");
+let btnDivi=document.getElementById("/");
 let btnMul = document.getElementById("x");
 let btnAddi = document.getElementById("+");
 let btnMines = document.getElementById("-");
@@ -29,30 +30,35 @@ let op;
 let eqal;
 btnAddi.addEventListener("click",e=>{
     op="+";
-    num1=parseInt(txt.value);
+    num1=parseFloat(txt.value);
     txt.value='';
 });
 btnMul.addEventListener("click",e=>{
     op="*";
-    num1=parseInt(txt.value);
+    num1=parseFloat(txt.value);
     txt.value='';
 });
 btnMines.addEventListener("click",e=>{
     op="-";
-    num1=parseInt(txt.value);
+    num1=parseFloat(txt.value);
     txt.value='';
 });
 btnMod.addEventListener("click",e=>{
     op="%";
-    num1=parseInt(txt.value);
+    num1=parseFloat(txt.value);
     txt.value='';
 });
+btnDivi.addEventListener("click",e=>{
+    op="/";
+    num1=parseFloat(txt.value);
+    txt.value='';
+})
 
 let num2;
 let sum;
 btnEqual.addEventListener("click",e=>{
     eqal="=";
-    num2=parseInt(txt.value);
+    num2=parseFloat(txt.value);
     oparate();
     txt.value=num1+" "+op+" "+num2+" "+"="+" "+sum;
     
@@ -62,26 +68,18 @@ function oparate(){
     switch(op){
         case '+':
             sum=num1+num2;
-            num1=sum;
             break;
         case '-':
             sum=num1-num2;
             break;
         case '*':
             sum=num1*num2;
-            num1=sum;
             break;
         case '/':
             sum=num1/num2;
-            num1=sum;
             break;
         case '%':
             sum=num1%num2;
-            num1=sum;
-            break;
-        case '=':
-            txt.value=sum;
-            
             break;
         default : 
             alert("Invalid Op");
@@ -93,6 +91,9 @@ function oparate(){
 
 btnC.addEventListener("click",e=>{
     txt.value='';
+});
+btnBack.addEventListener("click",e=>{
+    txt.value=txt.value.substr(0,txt.value.length-1);
 });
 
 btnOne.addEventListener("click",e=>{
@@ -127,4 +128,9 @@ btnDobZiro.addEventListener("click",e=>{
 });
 btnZero.addEventListener("click",e=>{
     btnZero=txt.value+=0;
+});
+btnDot.addEventListener("click", () => {
+    if (!txt.value.includes(".")) {
+        txt.value += ".";
+    }
 });
